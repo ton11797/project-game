@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<string.h>
-void render(int n,char *data,int s){
+void render(int n,char *data,int *s){
 	int i,j,k,v=1;
 	for (k = 0; k < n; ++k){
 		for (i = 0; i < n; ++i)printf("==========  ");
@@ -8,7 +8,7 @@ void render(int n,char *data,int s){
         for(i=0;i<n;i++)printf("=        =  ");
 		printf("\n");
 		for(i=0;i<n;i++){
-            if(s==1){
+            if(*s==1){
                 printf("=");
                 if(strlen(data)<8)for(j=0;j<(8-strlen(data))/2;j++)printf(" ");
                 printf("%s",data);
@@ -22,6 +22,7 @@ void render(int n,char *data,int s){
                 printf("=  ");
                 v++;
             }
+            s++;
 		}
 		printf("\n");
         for(i=0;i<n;i++)printf("=        =  ");
@@ -39,14 +40,16 @@ void adddata(char *data,char value[9],int order){
     }
 }
 void main(){
-    int n,i;
+    int n,i,*status;
     char *data,in[9];
-    data =(char*)malloc(n*n*9);
     scanf("%d",&n);
+    data =(char*)malloc(n*n*9);
+    status =(int*)malloc(sizeof(int)*(n*n));
     for(i=0;i<n*n;i++){
-        scanf("%s",in);
+        scanf("%s %d",in,status+i);
         adddata(data,in,i+1);
     }
-    render(n,data,0);
+    render(n,data,status);
     free(data);
+    free(status);
 }
