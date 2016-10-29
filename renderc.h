@@ -1,5 +1,3 @@
-#include<stdio.h>
-#include<string.h>
 void render(int n,char *data,int *s){
 	int i,j,k,v=1;
 	for (k = 0; k < n; ++k){

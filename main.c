@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"renderc.h"
+#include"gameprocess.h"
 void adddata(char*,char[],int);
 
 void main(){
