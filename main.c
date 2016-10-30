@@ -1,18 +1,22 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include"renderc.h"
 #include"gameprocess.h"
+#define WORLDLEN 16
 void adddata(char*,char[],int);
 
 int main(){
-    int n,i,*status,m;
-    char *data,in[9];
-    m=menu();
-    system("cls");
-    if(m==1){
+    int n,i,*status,*ans,m;
+    char *data,in[(WORLDLEN+1)];
+    while(1){
     scanf("%d",&n);
-    data =(char*)malloc(n*n*9);
+    system("cls");
+    //prepare data
+    data =(char*)malloc(n*n*(WORLDLEN+1));
     status =(int*)malloc(sizeof(int)*(n*n));
+    ans =(int*)malloc(sizeof(int)*(n*n));
+
     for(i=0;i<n*n;i++){
         scanf("%s %d",in,status+i);
         adddata(data,in,i+1);
@@ -20,17 +24,13 @@ int main(){
     render(n,data,status);
     free(data);
     free(status);
-    }else if(m==2){
-        printf("static");
-    }else{
-        return 0;
-    }
 }
-void adddata(char *data,char value[9],int order){
+}
+void adddata(char *data,char value[(WORLDLEN+1)],int order){
     int i;
     order--;
-    data+=order*9;
-    for(i=0;i<10;i++,data++){
+    data+=order*(WORLDLEN+1);
+    for(i=0;i<WORLDLEN+2;i++,data++){
         *(data) = value[i];
     }
 }
