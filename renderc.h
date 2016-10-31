@@ -1,7 +1,10 @@
 #define WORLDLEN 16
 #define CARDLONG 2
-void render(int n,char *data,int *s){
+void render(int n,char *pdata,int *s){
 	int i,j,k,l,v=1;
+    char *data;
+    data=pdata;
+    system("cls");
 	for (k = 0; k < n; ++k){
         for (i = 0; i < n; ++i){
                 for (j = 0; j < WORLDLEN+2; ++j)if(*s!=3)printf("=");
@@ -40,9 +43,11 @@ void render(int n,char *data,int *s){
                     if(v<10)printf(" ");
                     printf("=  ");
                     v++;
+                    data+=(WORLDLEN+1);
                 }else{
                     for (j = 0; j < WORLDLEN+4; ++j)printf(" ");
                     v++;
+                    data+=(WORLDLEN+1);
                 }
             s++;
             }
