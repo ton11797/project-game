@@ -1,5 +1,6 @@
 #define WORLDLEN 16
 void loadworld(char *pdata,int *use,int n){
+    //read word to array
     FILE *fp;
     char world[100][WORLDLEN];
     char read[WORLDLEN],*data;
@@ -11,6 +12,7 @@ void loadworld(char *pdata,int *use,int n){
         strcpy(world[c],read);
         c++;
     }
+    //switching word
     int r,r2,keep;
     time_t t;
     srand((unsigned) time(&t));
@@ -36,10 +38,10 @@ void loadworld(char *pdata,int *use,int n){
             *(use+r2)=keep;
         }
     }
+    //send word to main programm
    for(i=0;i<n*n;i++){
     	strcpy(data,world[*(use+i)]);
     	data+=WORLDLEN+1;
     }
     fclose(fp);
 }
-
