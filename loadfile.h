@@ -52,3 +52,57 @@ void savescore(char name[],int score){
     fprintf(fp, "%s %d\n",name,score);
     fclose(fp);
 }
+
+void readscore(){
+    FILE *fp;
+    char read[30],name[50][30],score[50][10],keep[30];
+    int i,j,c=0;
+    fp =fopen("score.txt","r");
+    fscanf(fp, "%s", read);
+    while(strcmp(read,score[c-1])!=0){
+        strcpy(name[c],read);
+        fscanf(fp, "%s", read);
+        strcpy(score[c],read);
+        fscanf(fp, "%s", read);
+        c++;
+    }
+
+    for(i=0;i<c;i++){
+        for(j=i+1;j<c;j++){
+            if (cmp(score[i],score[j])<0){
+                strcpy(keep,name[i]);
+                strcpy(name[i],name[j]);
+                strcpy(name[j],keep);
+                strcpy(keep,score[i]);
+                strcpy(score[i],score[j]);
+                strcpy(score[j],keep);
+            }
+        }
+    }
+
+    for (i = 0; i < c; ++i)
+    {
+        printf("%20s %d.%s %s\n","",i+1,name[i],score[i]);
+    }
+    fclose(fp);
+}
+
+int cmp(char sc1[],char sc2[]){
+    int i;
+    char *p1=&sc1,*p2=&sc2;
+    if (strlen(sc1)>strlen(sc2)){
+        return 1;
+    }else if (strlen(sc1)<strlen(sc2)){
+        return -1;
+    }else if (strlen(sc1)==strlen(sc2)){
+        for (i = 0; i < strlen(sc1); ++i)
+        {
+            if (*p1>*p2){
+                return -1;
+            }
+            if (*p1<*p2){
+                return 1;
+            }
+        }
+    }
+}
