@@ -45,3 +45,10 @@ void loadworld(char *pdata,int *use,int n){
     }
     fclose(fp);
 }
+
+void savescore(char name[],int score){
+    FILE *fp;
+    fp = fopen("score.txt","a");
+    fprintf(fp, "%s %d\n",name,score);
+    fclose(fp);
+}

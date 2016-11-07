@@ -16,13 +16,14 @@ void cursor(int,int);
 int manu();
 
 int main(){
-    int n,i,*status,*ans,m,x,y,f=0;
-    char *data,in[(WORLDLEN+1)];
+    int n,i,*status,*ans,m,x,y,f=0,score;
+    char *data,in[(WORLDLEN+1)],name[30];
     while(1){
     n = manu();
     system("cls");
+    if(n<20){
         //prepare data
-    if(n<20){       
+        score=n*n*100;
         data =(char*)malloc(n*n*(WORLDLEN+1));
         status =(int*)malloc(sizeof(int)*(n*n));
         ans =(int*)malloc(sizeof(int)*(n*n));
@@ -43,6 +44,7 @@ int main(){
         printf("\n");
         //user input and process
         while(1){
+            printf("Enter 2 card number :");
             scanf("%d %d",&x,&y);
             if(x<=(n*n)&&y<=(n*n)&&x!=y){
                 printf("%d %d",*(ans+x-1),*(ans+y-1));
@@ -55,8 +57,17 @@ int main(){
                     *(status+y-1)=3;
                     render(n,data,status);
                     f++;
-                    if(f>= n*n/2)break;
+                    if(f>= n*n/2){
+                        system("cls");
+                        printf("GAME END\n");
+                        printf("Enter your nick name: ");
+                        scanf("%s",name);
+                        savescore(name,score);
+                        f=0;
+                        getch();
+                        break;}
                 }else{
+                    score-=100;
                     *(status+x-1)=1;
                     *(status+y-1)=1;
                     render(n,data,status);
