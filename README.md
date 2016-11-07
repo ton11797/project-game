@@ -19,8 +19,3 @@ How to play
 6. if you select correct card card will disaplear you lost score when select worng card
 7. When all card disaplear game end then type your name and enter
 
-
-License
-----
-
-Mahidol
