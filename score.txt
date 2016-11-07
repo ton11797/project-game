@@ -1,0 +1,9 @@
+torn 6400
+mook 6400
+note 6400
+fon 6400
+cat 4500
+bat 2400
+ant 200
+zxc 420
+new 400
