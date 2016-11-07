@@ -5,11 +5,7 @@
 #include<time.h>
 #include"renderc.h"
 #include"loadfile.h"
-#include<windows.h>
 #define WORLDLEN 16
-//color.h
-#define textcolor(txt,back) SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), back*16+txt)
-#define resetcolor() SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15)
 //prototype function
 void delay(unsigned int);
 void cursor(int,int);
@@ -107,10 +103,4 @@ void delay(unsigned int mseconds)
 {
     clock_t goal = mseconds + clock();
     while (goal > clock());
-}
-void cursor(int x,int y){
-COORD cursor;
-cursor.X =x;
-cursor.Y = y;
-SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),cursor);
 }
