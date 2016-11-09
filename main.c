@@ -107,8 +107,7 @@ int manu(){
         scanf("%d",&i);
         if(i==3){
             return 99;
-        }
-        if(i==1){
+        }else if(i==1){
             system("cls");
             for(i=0;i<=6;i++)printf("%s\n",title[i]);
             printf("%45s","Select Level\n");
@@ -126,14 +125,15 @@ int manu(){
             }
             return i*2;
 
-        }
-        if(i==2){
+        }else if(i==2){
             system("cls");
             for(i=0;i<=6;i++)printf("%s\n",title[i]);
             printf("%45s","Scoreboard\n");
             readscore();
             printf("%10s %s","","press any key back to menu");
             getch();
+        }else{
+            return 99;
         }
     }while(i!=99);
     return 21;
