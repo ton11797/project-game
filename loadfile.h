@@ -89,19 +89,19 @@ void readscore(){
 
 int cmp(char sc1[],char sc2[]){
     int i;
-    char *p1=&sc1,*p2=&sc2;
+    char *p1=sc1,*p2=sc2;
     if (strlen(sc1)>strlen(sc2)){
         return 1;
     }else if (strlen(sc1)<strlen(sc2)){
         return -1;
     }else if (strlen(sc1)==strlen(sc2)){
-        for (i = 0; i < strlen(sc1); ++i)
+        for (i = 0; i < strlen(sc1); ++i,p1++,p2++)
         {
             if (*p1>*p2){
-                return -1;
+                return 1;
             }
             if (*p1<*p2){
-                return 1;
+                return -1;
             }
         }
     }
