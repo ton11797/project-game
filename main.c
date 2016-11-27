@@ -5,22 +5,21 @@
 #include<time.h>
 #include"renderc.h"
 #include"loadfile.h"
-#define WORLDLEN 16
+#define WORDLEN 16
 //prototype function
 void delay(unsigned int);
-void cursor(int,int);
-int manu();
+int menu();
 
 int main(){
     int n,i,*status,*ans,m,x,y,f=0,score;
-    char *data,in[(WORLDLEN+1)],name[30],gc;
+    char *data,in[(WORDLEN+1)],name[30],gc;
     while(1){
-    n = manu();
+    n = menu();
     system("cls");
     if(n<20){
         //prepare data
         score=n*n*100;
-        data =(char*)malloc(n*n*(WORLDLEN+1));
+        data =(char*)malloc(n*n*(WORDLEN+1));
         status =(int*)malloc(sizeof(int)*(n*n));
         ans =(int*)malloc(sizeof(int)*(n*n));
         loadworld(data,ans,n);
@@ -34,9 +33,7 @@ int main(){
             *(status+i)=0;
         }
         render(n,data,status,score);
-        for(i=0;i<n*n;i++){
-            printf("%d ",*(ans+i));
-        }
+        
         printf("\n");
         //user input and process
         while(1){
@@ -83,7 +80,7 @@ int main(){
 }
     return 0;
 }
-int manu(){
+int menu(){
     system("cls");
     char title[6][100]={"     ________          ________          ________          ________     "
                          ,"    |\\   ____\\        |\\   __  \\        |\\   __  \\        |\\   ___ \\    "
@@ -99,7 +96,7 @@ int manu(){
     do{
         system("cls");
         for(i=0;i<=6;i++)printf("%s\n",title[i]);
-        printf("%45s","Select manu\n");
+        printf("%45s","Select menu\n");
         printf("%20s %s","","[1]Play Game\n");
         printf("%20s %s","","[2]Show Score\n");
         printf("%20s %s","","[3]Exit\n");

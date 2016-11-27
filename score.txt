@@ -7,3 +7,7 @@ bat 2400
 ant 200
 zxc 420
 new 400
+dfxcvx 300
+4 400
+f 200
+eiei 400
