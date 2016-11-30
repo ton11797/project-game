@@ -46,6 +46,7 @@ void loadworld(char *pdata,int *use,int n){
     fclose(fp);
 }
 
+//function save score
 void savescore(char name[],int score){
     FILE *fp;
     fp = fopen("score.txt","a");
@@ -53,11 +54,14 @@ void savescore(char name[],int score){
     fclose(fp);
 }
 
+
 void readscore(){
     FILE *fp;
-    char read[30],name[50][30],score[50][10],keep[30];
+    char read[30],name[50][30],keep[30];
+    int score[50][10];
     int i,j,c=0;
     fp =fopen("score.txt","r");
+    //read name and score in file
     fscanf(fp, "%s", read);
     while(strcmp(read,score[c-1])!=0){
         strcpy(name[c],read);
@@ -66,10 +70,10 @@ void readscore(){
         fscanf(fp, "%s", read);
         c++;
     }
-
+    //sorting score
     for(i=0;i<c;i++){
         for(j=i+1;j<c;j++){
-            if (cmp(score[i],score[j])<0){
+            if (atoi(score[i])<atoi(score[j])){
                 strcpy(keep,name[i]);
                 strcpy(name[i],name[j]);
                 strcpy(name[j],keep);
@@ -79,30 +83,10 @@ void readscore(){
             }
         }
     }
-
-    for (i = 0; i < c; ++i)
-    {
+    //print score
+    for (i = 0; i < c; ++i){
         printf("%20s %d.%s %s\n","",i+1,name[i],score[i]);
     }
     fclose(fp);
 }
 
-int cmp(char sc1[],char sc2[]){
-    int i;
-    char *p1=sc1,*p2=sc2;
-    if (strlen(sc1)>strlen(sc2)){
-        return 1;
-    }else if (strlen(sc1)<strlen(sc2)){
-        return -1;
-    }else if (strlen(sc1)==strlen(sc2)){
-        for (i = 0; i < strlen(sc1); ++i,p1++,p2++)
-        {
-            if (*p1>*p2){
-                return 1;
-            }
-            if (*p1<*p2){
-                return -1;
-            }
-        }
-    }
-}
